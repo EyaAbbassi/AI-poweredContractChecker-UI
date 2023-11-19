@@ -1,0 +1,96 @@
+ #content {
+  position: relative;
+  width: calc(100% - 280px);
+  left: 280px;
+  transition: .3s ease;
+}
+#content main {
+  width: 100%;
+  padding: 36px 24px;
+  font-family: var(--poppins);
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+#content main .head-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+#content main .head-title .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#content main .head-title .breadcrumb li a {
+  color: var(--dark-grey);
+  pointer-events: none;
+}
+
+#content main .head-title .breadcrumb li a.active {
+  color: var(--blue);
+  pointer-events: unset;
+}
+
+.pdf-details-container {
+  background: var(--light);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 36px;
+}
+
+.pdf-details-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--dark);
+}
+
+.contract-details {
+  width: 100%;
+}
+
+.contract-details td, .contract-details ul:first-child li:first-child {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--grey);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.action-buttons button {
+  background: var(--blue);
+  color: var(--light);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-left: 8px;
+}
+
+.loading-indicator {
+  border: 4px solid #3498db;
+  border-radius: 50%;
+  border-top: 4px solid transparent;
+  width: 24px;
+  height: 24px;
+  margin-top: 10px;
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

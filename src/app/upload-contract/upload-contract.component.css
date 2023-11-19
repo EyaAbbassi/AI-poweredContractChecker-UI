@@ -1,0 +1,162 @@
+#content {
+  position: relative;
+  width: calc(100% - 280px);
+  left: 280px;
+  transition: .3s ease
+}
+
+#content main {
+  padding: 36px 24px;
+  font-family: var(--poppins);
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.head-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 16px;
+  flex-wrap: wrap;
+  height: 36px;
+}
+
+.head-title .left h1 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.head-title .left .breadcrumb {
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
+}
+
+.head-title .left .breadcrumb li {
+  color: var(--dark);
+}
+
+.head-title .left .breadcrumb li a {
+  color: var(--dark-grey);
+  pointer-events: none;
+}
+
+.head-title .left .breadcrumb li a.active {
+  color: var(--blue);
+  pointer-events: unset;
+}
+
+.content-container {
+  margin-top: 36px;
+}
+
+.upload-container,
+.pdf-details-container {
+  background: var(--light);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 36px;
+}
+
+.upload-container h2,
+.pdf-details-container h2,
+.analysis-options-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--dark);
+}
+
+.upload-container input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px solid var(--grey);
+  border-radius: 8px;
+  outline: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.upload-container button,
+.analysis-options-container button {
+  background: var(--blue);
+  color: var(--light);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-container button:disabled,
+.analysis-options-container button:disabled {
+  background: var(--grey);
+  cursor: not-allowed;
+}
+
+.analysis-options-container .initiate-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  justify-content: flex-end;
+}
+
+.analysis-options-container .initiate-button[disabled] {
+  cursor: not-allowed;
+}
+
+.analysis-options-container .loading-indicator,
+.analysis-options-container .loading-text {
+  margin-left: 8px;
+  color: var(--dark-grey);
+}
+
+.contract-details {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.contract-details td, ul:first-child li:first-child {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--grey);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-buttons button {
+  background: var(--blue);
+  color: var(--light);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-left: 8px;
+  margin-top: 36px
+}
+
+.action-buttons button[disabled] {
+  background: var(--grey);
+  cursor: not-allowed;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

@@ -1,0 +1,95 @@
+<section id="content">
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <ul class="breadcrumb">
+          <li>
+            <a href="/">Overview</a>
+          </li>
+          <li><i class='bx bx-chevron-right'></i></li>
+          <li>
+            <a href="/upload-contract" class="active">Upload Contract</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="upload-container">
+        <h2>Upload Contract</h2>
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept=".pdf" style="cursor: pointer">
+
+        <button (click)="uploadContract()" style="cursor: pointer">
+          <i class="fas fa-upload"></i>
+          Upload Contract</button>
+      </div>
+      <div *ngIf="loading" class="loading-indicator"></div>
+      <p *ngIf="loading">Uploading...</p>
+      <div *ngIf="contractId" class="pdf-details-container">
+        <h2>More About the Contract</h2>
+        <div class="analysis-options-container">
+          <h2>Analysis Options</h2>
+          <div class="analysis-options">
+            <div *ngFor="let option of analysisOptions" class="analysis-option">
+              <input type="radio" id="{{ option }}" name="analysisType" [(ngModel)]="selectedAnalysisType" [value]="option">
+              <label for="{{ option }}">{{ option }}</label>
+            </div>
+            <button class="initiate-button" (click)="initiateAnalysis()" [disabled]="!selectedAnalysisType">
+              <i class="fas fa-play-circle"></i>
+              <span class="sr-only">Initiate Analysis</span>
+              <div *ngIf="analyzing" class="loading-indicator"></div>
+              <span *ngIf="analyzing" class="loading-text">Analyzing...</span>
+            </button>
+          </div>
+        </div>
+        <table class="contract-details">
+          <tr>
+            <td><strong>Title</strong></td>
+            <td>{{ title || 'N/A' }}</td>
+          </tr>
+          <tr>
+            <td><strong>Number of Pages</strong></td>
+            <td>{{ pagesNum || 'N/A' }}</td>
+          </tr>
+          <tr>
+            <td><strong>Author</strong></td>
+            <td>{{ author || 'N/A' }}</td>
+          </tr>
+
+          <!-- Display Toxicity Analysis if it exists -->
+          <tr *ngIf="toxicityAnalysis">
+            <td><strong>Toxicity Analysis</strong></td>
+            <td>{{ toxicityAnalysis }}</td>
+          </tr>
+
+          <!-- Display Is Compliant if it exists -->
+          <tr *ngIf="isCompliant">
+            <td><strong>Is Compliant:</strong></td>
+            <td>{{ isCompliant }}</td>
+          </tr>
+
+          <!-- Display Rule Based Legal Compliance if it exists -->
+          <tr *ngIf="ruleBasedLegalCompliance && ruleBasedLegalCompliance.length > 0">
+            <td><strong>Rule Based Legal Compliance:</strong></td>
+            <td>
+              <ul>
+                <li *ngFor="let rule of ruleBasedLegalCompliance">
+                  <strong>Rule:</strong> {{ rule.rule }}
+                  <ul>
+                    <li><strong>Compliance:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}</li>
+                    <li> {{ rule.message }}</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <div class="action-buttons">
+          <button (click)="downloadContract()" [disabled]="loading">
+            <i class="fas fa-download"></i>
+            Download Info</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>

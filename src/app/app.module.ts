@@ -3,14 +3,32 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MainContentComponent } from './main-content/main-content.component';
+import { ContractsComponent } from './contracts/contracts.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UploadContractComponent } from './upload-contract/upload-contract.component';
+import { ContractDetailsComponent } from './contract-details/contract-details.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent,
+    NavbarComponent,
+    MainContentComponent,
+    ContractsComponent,
+    TodoListComponent,
+    UploadContractComponent,
+    ContractDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [
     provideClientHydration()
