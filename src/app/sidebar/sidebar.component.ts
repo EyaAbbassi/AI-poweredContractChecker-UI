@@ -7,12 +7,13 @@ import { ToggleService } from '../services/toggle.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  status = false;
+  status: boolean = false;
 
-  constructor(private toggleService: ToggleService) {}
+  constructor(private toggleService: ToggleService) { }
 
   ngOnInit(): void {
-    // Retrieve the initial status from the service
-    this.status = this.toggleService.getStatus();
+    this.toggleService.sidebarStatus$.subscribe((status) => {
+      this.status = status;
+    });
   }
 }

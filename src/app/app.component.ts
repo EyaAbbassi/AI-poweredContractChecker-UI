@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AI-checker';
-  //Sidebar toggle show hide function
-  status = false;
-  addToggle()
-  {
-    this.status = !this.status;
-  }
 }

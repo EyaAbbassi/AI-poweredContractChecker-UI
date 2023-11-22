@@ -7,9 +7,9 @@ import { ToggleService } from '../services/toggle.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private toggleService: ToggleService) {}
+  constructor(private toggleService: ToggleService) { }
 
   addToggle() {
-    this.toggleService.toggleStatus();
+    this.toggleService.toggleSidebar();
   }
 }
