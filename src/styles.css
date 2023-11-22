@@ -78,6 +78,7 @@ body {
     display: block;
     width: 100%;
   }
+
   #content nav form.show .form-input button {
     width: 36px;
     height: 100%;
@@ -86,8 +87,8 @@ body {
     background: var(--red);
   }
 
-  #content nav form.show ~ .notification,
-  #content nav form.show ~ .profile {
+  #content nav form.show~.notification,
+  #content nav form.show~.profile {
     display: none;
   }
 
@@ -98,10 +99,8 @@ body {
   #content main .table-data .head {
     min-width: 420px;
   }
+
   #content main .table-data .order table {
-    min-width: 420px;
-  }
-  #content main .table-data .todo .todo-list {
     min-width: 420px;
   }
 }

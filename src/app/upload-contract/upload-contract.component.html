@@ -31,7 +31,8 @@
           <h2>Analysis Options</h2>
           <div class="analysis-options">
             <div *ngFor="let option of analysisOptions" class="analysis-option">
-              <input type="radio" id="{{ option }}" name="analysisType" [(ngModel)]="selectedAnalysisType" [value]="option">
+              <input type="radio" id="{{ option }}" name="analysisType" [(ngModel)]="selectedAnalysisType"
+                [value]="option">
               <label for="{{ option }}">{{ option }}</label>
             </div>
             <button class="initiate-button" (click)="initiateAnalysis()" [disabled]="!selectedAnalysisType">
@@ -56,27 +57,26 @@
             <td>{{ author || 'N/A' }}</td>
           </tr>
 
-          <!-- Display Toxicity Analysis if it exists -->
           <tr *ngIf="toxicityAnalysis">
             <td><strong>Toxicity Analysis</strong></td>
-            <td>{{ toxicityAnalysis }}</td>
+            <td>{{ toxicityAnalysis ? 'The content flagged some potential concerns!' : 'Your content is in the clear! No
+              toxicity detected.' }}</td>
           </tr>
 
-          <!-- Display Is Compliant if it exists -->
           <tr *ngIf="isCompliant">
-            <td><strong>Is Compliant:</strong></td>
-            <td>{{ isCompliant }}</td>
+            <td><strong>Compliance</strong></td>
+            <td>{{ isCompliant ? 'No compliance issues found! Your content is meeting the necessary standards.' :
+              'We\'ve identified a potential compliance concern in your content' }}</td>
           </tr>
 
-          <!-- Display Rule Based Legal Compliance if it exists -->
           <tr *ngIf="ruleBasedLegalCompliance && ruleBasedLegalCompliance.length > 0">
-            <td><strong>Rule Based Legal Compliance:</strong></td>
+            <td><strong>Rule Based Legal Compliance</strong></td>
             <td>
               <ul>
                 <li *ngFor="let rule of ruleBasedLegalCompliance">
-                  <strong>Rule:</strong> {{ rule.rule }}
+                  <strong>Following the rule </strong> {{ rule.rule }}
                   <ul>
-                    <li><strong>Compliance:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}</li>
+                    <li><strong>Based on the rule:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}</li>
                     <li> {{ rule.message }}</li>
                   </ul>
                 </li>

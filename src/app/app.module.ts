@@ -7,7 +7,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { ContractsComponent } from './contracts/contracts.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadContractComponent } from './upload-contract/upload-contract.component';
 import { ContractDetailsComponent } from './contract-details/contract-details.component';
@@ -20,7 +19,6 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     MainContentComponent,
     ContractsComponent,
-    TodoListComponent,
     UploadContractComponent,
     ContractDetailsComponent
   ],
