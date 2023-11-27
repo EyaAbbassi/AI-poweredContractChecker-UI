@@ -1,96 +1,270 @@
+ /* #content {
+   position: relative;
+   width: calc(100% - 280px);
+   left: 280px;
+   transition: .3s ease;
+ }
+
+ #content main {
+   width: 100%;
+   padding: 36px 24px;
+   font-family: var(--poppins);
+   max-height: calc(100vh - 56px);
+   overflow-y: auto;
+ }
+
+ #content main .head-title {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 16px 24px;
+ }
+
+ #content main .head-title .breadcrumb {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+ }
+
+ #content main .head-title .breadcrumb li a {
+   color: var(--dark-grey);
+   pointer-events: none;
+ }
+
+ #content main .head-title .breadcrumb li a.active {
+   color: var(--blue);
+   pointer-events: unset;
+ }
+
+ .pdf-details-container {
+   background: var(--light);
+   border-radius: 20px;
+   padding: 24px;
+   margin-bottom: 36px;
+ }
+
+ .pdf-details-container h2 {
+   font-size: 24px;
+   font-weight: 600;
+   margin-bottom: 16px;
+   color: var(--dark);
+ }
+
+ .contract-details {
+   width: 100%;
+ }
+
+ .contract-details td,
+ .contract-details ul:first-child li:first-child {
+   padding: 8px 0;
+   border-bottom: 1px solid var(--grey);
+ }
+
+ .action-buttons {
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 24px;
+ }
+
+ .action-buttons button {
+   background: var(--blue);
+   color: var(--light);
+   padding: 12px 24px;
+   border: none;
+   border-radius: 8px;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.3s ease;
+   margin-left: 8px;
+ }
+
+ .loading-indicator {
+   border: 4px solid #3498db;
+   border-radius: 50%;
+   border-top: 4px solid transparent;
+   width: 24px;
+   height: 24px;
+   margin-top: 10px;
+   animation: rotate 1s infinite linear;
+ }
+
+ @keyframes rotate {
+   from {
+     transform: rotate(0deg);
+   }
+
+   to {
+     transform: rotate(360deg);
+   }
+ }
+
+ .comments-collaborators-container {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+ }
+
+ .comments-card {
+   width: calc(70% - 5px);
+   margin-top: 20px;
+ }
+
+ .collaborators-card {
+   width: calc(30% - 5px);
+   margin-top: 20px;
+ }
+
+ @media (max-width: 768px) {
+
+   .comments-card,
+   .collaborators-card {
+     width: 100%;
+     margin-right: 0;
+   }
+ }
+
+ .collaborators-card mat-card-title,
+ .comments-card mat-card-title {
+   display: flex;
+   align-items: center;
+
+   mat-icon {
+     margin-right: 8px;
+   }
+ } */
+
  #content {
-  position: relative;
-  width: calc(100% - 280px);
-  left: 280px;
-  transition: .3s ease;
-}
-#content main {
-  width: 100%;
-  padding: 36px 24px;
-  font-family: var(--poppins);
-  max-height: calc(100vh - 56px);
-  overflow-y: auto;
-}
+   position: relative;
+   width: calc(100% - 280px);
+   left: 280px;
+   transition: .3s ease;
+ }
 
-#content main .head-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-}
+ #content main {
+   width: 100%;
+   padding: 36px 24px;
+   font-family: var(--poppins);
+   max-height: calc(100vh - 56px);
+   overflow-y: auto;
+ }
 
-#content main .head-title .breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+ #content main .head-title {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 16px 24px;
+ }
 
-#content main .head-title .breadcrumb li a {
-  color: var(--dark-grey);
-  pointer-events: none;
-}
+ #content main .head-title .breadcrumb {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+ }
 
-#content main .head-title .breadcrumb li a.active {
-  color: var(--blue);
-  pointer-events: unset;
-}
+ #content main .head-title .breadcrumb li a {
+   color: var(--dark-grey);
+   pointer-events: none;
+ }
 
-.pdf-details-container {
-  background: var(--light);
-  border-radius: 20px;
-  padding: 24px;
-  margin-bottom: 36px;
-}
+ #content main .head-title .breadcrumb li a.active {
+   color: var(--blue);
+   pointer-events: unset;
+ }
 
-.pdf-details-container h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: var(--dark);
-}
+ #content main .summary-card {
+   background-color: var(--light);
+   border-radius: 20px;
+   margin-bottom: 36px;
+   padding: 24px;
+ }
 
-.contract-details {
-  width: 100%;
-}
+ #content main .summary-title {
+   font-size: 24px;
+   font-weight: 600;
+   color: var(--dark);
+   margin-bottom: 16px;
+ }
 
-.contract-details td, .contract-details ul:first-child li:first-child {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--grey);
-}
+ #content main .summary-table {
+   width: 100%;
+ }
 
-.action-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
-}
+ #content main .summary-row {
+   display: flex;
+   justify-content: space-between;
+   padding: 16px 0;
+   border-bottom: 2px solid var(--grey);
+ }
 
-.action-buttons button {
-  background: var(--blue);
-  color: var(--light);
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-left: 8px;
-}
+ #content main .column-header {
+   font-weight: 500;
+   margin-right: 16px;
+ }
 
-.loading-indicator {
-  border: 4px solid #3498db;
-  border-radius: 50%;
-  border-top: 4px solid transparent;
-  width: 24px;
-  height: 24px;
-  margin-top: 10px;
-  animation: rotate 1s infinite linear;
-}
+ #content main .column-data {
+   flex-grow: 1;
+   color: var(--dark);
+ }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+ #content main .comments-collaborators-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin-top: 10px;
+ }
+
+ #content main .comments-card {
+   width: calc(68% - 12px);
+   margin-top: 10px;
+ }
+
+ #content main .collaborators-card {
+   width: calc(28% - 12px);
+   margin-top: 10px;
+ }
+
+ @media (max-width: 768px) {
+
+   #content main .comments-card,
+   #content main .collaborators-card {
+     width: 100%;
+     margin-top: 20px;
+   }
+ }
+
+ #content main .collaborators-card mat-card-title,
+ #content main .comments-card mat-card-title {
+   display: flex;
+   align-items: center;
+ }
+
+ #content main .collaborators-card mat-icon,
+ #content main .comments-card mat-icon {
+   margin-right: 8px;
+ }
+
+ .contract-details-table {
+   width: 100%;
+   border-collapse: collapse;
+   table-layout: fixed;
+ }
+
+ .contract-details-table th,
+ .contract-details-table td {
+   border: 1px solid var(--grey);
+   padding: 10px;
+   text-align: left;
+ }
+
+ .column-header {
+   width: 30%;
+   white-space: nowrap;
+ }
+
+ .column-data {
+   width: 70%;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+ }

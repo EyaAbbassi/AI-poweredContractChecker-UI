@@ -12,7 +12,7 @@ import { ContractService } from '../services/contract.service';
 export class MainContentComponent implements OnInit {
   contractsCounts: number = 0;
 
-  constructor(private contractService: ContractService) {}
+  constructor(private contractService: ContractService) { }
 
   ngOnInit(): void {
     this.getContracts();

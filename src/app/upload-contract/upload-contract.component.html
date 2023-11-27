@@ -16,79 +16,95 @@
 
     <div class="content-container">
       <div class="upload-container">
-        <h2>Upload Contract</h2>
-        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept=".pdf" style="cursor: pointer">
-
-        <button (click)="uploadContract()" style="cursor: pointer">
-          <i class="fas fa-upload"></i>
-          Upload Contract</button>
+        <mat-label>Select File</mat-label>
+        <input type="file" (change)="onFileSelected($event)" accept=".pdf" id="fileInput">
+        <button mat-raised-button (click)="uploadContract()" [disabled]="!selectedFile">
+          <mat-icon>cloud_upload</mat-icon>
+          Upload Contract
+        </button>
+        <div *ngIf="loading" class="loading-indicator">
+          <mat-spinner diameter="32"></mat-spinner>
+        </div>
       </div>
-      <div *ngIf="loading" class="loading-indicator"></div>
-      <p *ngIf="loading">Uploading...</p>
+
       <div *ngIf="contractId" class="pdf-details-container">
         <h2>More About the Contract</h2>
         <div class="analysis-options-container">
-          <h2>Analysis Options</h2>
+          <h3>Analysis Options</h3>
           <div class="analysis-options">
-            <div *ngFor="let option of analysisOptions" class="analysis-option">
-              <input type="radio" id="{{ option }}" name="analysisType" [(ngModel)]="selectedAnalysisType"
-                [value]="option">
-              <label for="{{ option }}">{{ option }}</label>
-            </div>
-            <button class="initiate-button" (click)="initiateAnalysis()" [disabled]="!selectedAnalysisType">
-              <i class="fas fa-play-circle"></i>
-              <span class="sr-only">Initiate Analysis</span>
-              <div *ngIf="analyzing" class="loading-indicator"></div>
-              <span *ngIf="analyzing" class="loading-text">Analyzing...</span>
+            <mat-radio-group [(ngModel)]="selectedAnalysisType">
+              <mat-radio-button *ngFor="let option of analysisOptions" [value]="option">
+                {{ option }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <button mat-raised-button class="initiate-button" (click)="initiateAnalysis()"
+              [disabled]="!selectedAnalysisType">
+              <mat-icon *ngIf="analyzing">hourglass_empty</mat-icon>
+              Initiate Analysis
             </button>
+
           </div>
         </div>
-        <table class="contract-details">
-          <tr>
-            <td><strong>Title</strong></td>
-            <td>{{ title || 'N/A' }}</td>
-          </tr>
-          <tr>
-            <td><strong>Number of Pages</strong></td>
-            <td>{{ pagesNum || 'N/A' }}</td>
-          </tr>
-          <tr>
-            <td><strong>Author</strong></td>
-            <td>{{ author || 'N/A' }}</td>
-          </tr>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <mat-icon>lightbulb</mat-icon>
+              <strong>Contract Summary</strong>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table class="contract-details-table">
+              <tr *ngIf="title !== undefined">
+                <td class="column-header"><strong>Title</strong></td>
+                <td class="column-data">{{ title || 'N/A' }}</td>
+              </tr>
+              <tr *ngIf="pagesNum !== undefined">
+                <td class="column-header"><strong>Number of Pages</strong></td>
+                <td class="column-data">{{ pagesNum || 'N/A' }}</td>
+              </tr>
+              <tr *ngIf="author !== undefined">
+                <td class="column-header"><strong>Author</strong></td>
+                <td class="column-data">{{ author || 'N/A' }}</td>
+              </tr>
+              <tr *ngIf="toxicityAnalysis !== undefined">
+                <td class="column-header"><strong>Toxicity Analysis</strong></td>
+                <td class="column-data">{{ toxicityAnalysis ? 'The content flagged some potential concerns!' : 'Your
+                  content is in the clear! No toxicity detected.' }}</td>
+              </tr>
+              <tr *ngIf="isCompliant !== undefined">
+                <td class="column-header"><strong>Compliance Analysis</strong></td>
+                <td class="column-data">{{ isCompliant ? 'No compliance issues found! Your content is meeting the
+                  necessary standards.' : 'We\'ve identified a potential compliance concern in your content' }}</td>
+              </tr>
 
-          <tr *ngIf="toxicityAnalysis">
-            <td><strong>Toxicity Analysis</strong></td>
-            <td>{{ toxicityAnalysis ? 'The content flagged some potential concerns!' : 'Your content is in the clear! No
-              toxicity detected.' }}</td>
-          </tr>
-
-          <tr *ngIf="isCompliant">
-            <td><strong>Compliance</strong></td>
-            <td>{{ isCompliant ? 'No compliance issues found! Your content is meeting the necessary standards.' :
-              'We\'ve identified a potential compliance concern in your content' }}</td>
-          </tr>
-
-          <tr *ngIf="ruleBasedLegalCompliance && ruleBasedLegalCompliance.length > 0">
-            <td><strong>Rule Based Legal Compliance</strong></td>
-            <td>
-              <ul>
-                <li *ngFor="let rule of ruleBasedLegalCompliance">
-                  <strong>Following the rule </strong> {{ rule.rule }}
-                  <ul>
-                    <li><strong>Based on the rule:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}</li>
-                    <li> {{ rule.message }}</li>
+              <tr *ngIf="ruleBasedLegalCompliance && ruleBasedLegalCompliance.length > 0">
+                <td class="column-header"><strong>Rule Based Compliance</strong></td>
+                <td class="column-data">
+                  <ul class="rule-list">
+                    <li *ngFor="let rule of ruleBasedLegalCompliance">
+                      <div class="rule-item">
+                        <strong>Following the rule:</strong> {{ rule.rule }}
+                        <ul>
+                          <li><strong>Based on the rule:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}
+                          </li>
+                          <li>{{ rule.message }}</li>
+                        </ul>
+                      </div>
+                    </li>
                   </ul>
-                </li>
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <div class="action-buttons">
-          <button (click)="downloadContract()" [disabled]="loading">
-            <i class="fas fa-download"></i>
-            Download Info</button>
-        </div>
+                </td>
+              </tr>
+            </table>
+          </mat-card-content>
+          <mat-card-actions class="action-buttons">
+            <button mat-raised-button (click)="downloadContract()" [disabled]="loading">
+              <mat-icon>cloud_download</mat-icon>
+              Download Info
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+
       </div>
     </div>
   </main>

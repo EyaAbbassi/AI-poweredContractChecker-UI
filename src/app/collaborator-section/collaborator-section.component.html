@@ -1,0 +1,11 @@
+<div class="collaborator-section">
+  <ul>
+    <li *ngFor="let collaborator of collaborators" class="collaborator-item">
+      <img [src]="collaborator.photo" alt="{{ collaborator.name }} photo" class="round-photo" />
+      {{ collaborator.name }}
+    </li>
+  </ul>
+  <button mat-icon-button class="add-collaborator-button" (click)="addCollaborator()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

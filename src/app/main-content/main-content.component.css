@@ -6,7 +6,7 @@
   transition: .3s ease;
 }
 
-#sidebar.hide ~ #content {
+#sidebar.hide~#content {
   width: calc(100% - 60px);
   left: 60px;
 }
@@ -117,6 +117,7 @@
 #content main .box-info li .text p {
   color: var(--dark);
 }
+
 /* MAIN CONTENT */
 #content main .content-container {
   /* display: flex; */

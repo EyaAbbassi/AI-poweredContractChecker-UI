@@ -1,34 +1,51 @@
 <div class="table-data">
-  <div class="order">
+  <div class="contract">
     <div class="head">
       <h3>Recent Contracts</h3>
       <i class='bx bx-search'></i>
       <i class='bx bx-filter'></i>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Pages</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let contract of contracts" (click)="viewContractDetails(contract._id)" style="cursor: pointer">
-          <td>{{ contract.title }}</td>
-          <td>{{ contract.author }}</td>
-          <td>{{ contract.pagesNum }}</td>
-          <td>
-            <i class="bx bx-trash" (click)="deleteContract(contract._id, $event)" style="cursor: pointer"></i>
-          </td>
-       </tr>
-        <tr *ngIf="!count" >
-          <td class="no-results" colspan="3">
-            <p>There's no contract saved yet!</p>
-          </td>
-        </tr>
-      </tbody>
+    <table mat-table [dataSource]="contracts" class="mat-elevation-z8">
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef><strong>Title</strong></th>
+        <td mat-cell *matCellDef="let contract" (click)="viewContractDetails(contract._id)" style="cursor: pointer">{{
+          contract.title || 'N/A' }}</td>
+      </ng-container>
+
+      <!-- Author Column -->
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef><strong>Author</strong></th>
+        <td mat-cell *matCellDef="let contract">{{ contract.author || 'N/A' }}</td>
+      </ng-container>
+
+      <!-- Pages Column -->
+      <ng-container matColumnDef="pages">
+        <th mat-header-cell *matHeaderCellDef><strong>Pages</strong></th>
+        <td mat-cell *matCellDef="let contract">{{ contract.pagesNum || 'N/A'}}</td>
+      </ng-container>
+
+      <!-- Collaborators Column -->
+      <ng-container matColumnDef="collaborators">
+        <th mat-header-cell *matHeaderCellDef><strong>Collaborators</strong></th>
+        <td mat-cell *matCellDef="let contract">
+          <img *ngFor="let collaborator of collaborators" [src]="collaborator.photo" alt="{{ collaborator.name }} photo"
+            class="collaborator-photo" />
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef><strong>Actions</strong></th>
+        <td mat-cell *matCellDef="let contract">
+          <i class="bx bx-trash" (click)="openDeleteConfirmation(contract._id, $event)"></i>
+          <i class="bx bx-show" (click)="viewContractDetails(contract._id)"
+            style="cursor: pointer; margin-left: 8px;"></i>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['title', 'author', 'pages', 'collaborators', 'action']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['title', 'author', 'pages', 'collaborators', 'action'];"></tr>
     </table>
   </div>
 </div>

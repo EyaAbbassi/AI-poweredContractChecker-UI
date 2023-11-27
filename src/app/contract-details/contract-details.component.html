@@ -14,57 +14,85 @@
       </div>
     </div>
     <div class="content-container">
-      <div *ngIf="loading" class="loading-indicator"></div>
-      <p *ngIf="loading">Updating...</p>
+      <mat-card class="summary-card">
+        <mat-card-header>
+          <mat-card-title class="summary-title">
+            <strong>Contract Summary</strong>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="summary-table">
+            <div *ngIf="title !== undefined" class="summary-row">
+              <div class="column-header"><strong>{{ title }}</strong></div>
+            </div>
+            <table class="contract-details-table">
+              <tr *ngIf="pagesNum !== undefined">
+                <td class="column-header"><strong>Number of Pages</strong></td>
+                <td class="column-data">{{ pagesNum || 'N/A' }}</td>
+              </tr>
+              <tr *ngIf="author !== undefined">
+                <td class="column-header"><strong>Author</strong></td>
+                <td class="column-data">{{ author || 'N/A' }}</td>
+              </tr>
+              <tr *ngIf="toxicityAnalysis !== undefined">
+                <td class="column-header"><strong>Toxicity Analysis</strong></td>
+                <td class="column-data">{{ toxicityAnalysis ? 'The content flagged some potential concerns!' : 'Your
+                  content is in the clear! No toxicity detected.' }}</td>
+              </tr>
+              <tr *ngIf="isCompliant !== undefined">
+                <td class="column-header"><strong>Compliance Analysis</strong></td>
+                <td class="column-data">{{ isCompliant ? 'No compliance issues found! Your content is meeting the
+                  necessary standards.' : 'We\'ve identified a potential compliance concern in your content' }}</td>
+              </tr>
 
-      <div *ngIf="!loading" class="pdf-details-container">
-        <h2>Contract Details</h2>
-        <table class="contract-details">
-          <tr>
-            <td><strong>Title</strong></td>
-            <td>{{ title || 'N/A' }}</td>
-          </tr>
-          <tr>
-            <td><strong>Number of Pages</strong></td>
-            <td>{{ pagesNum || 'N/A' }}</td>
-          </tr>
-          <tr>
-            <td><strong>Author</strong></td>
-            <td>{{ author || 'N/A' }}</td>
-          </tr>
-
-          <tr *ngIf="toxicityAnalysis">
-            <td><strong>Toxicity Analysis</strong></td>
-            <td>{{ toxicityAnalysis ? 'The content flagged some potential concerns!' : 'Your content is in the clear! No
-              toxicity detected.' }}</td>
-          </tr>
-
-          <tr *ngIf="isCompliant">
-            <td><strong>Compliance</strong></td>
-            <td>{{ isCompliant ? 'No compliance issues found! Your content is meeting the necessary standards.' :
-              'We\'ve identified a potential compliance concern in your content' }}</td>
-          </tr>
-
-          <!-- Display Rule Based Legal Compliance if it exists -->
-          <tr *ngIf="ruleBasedLegalCompliance && ruleBasedLegalCompliance.length > 0">
-            <td><strong>Rule Based Legal Compliance:</strong></td>
-            <td>
-              <ul>
-                <li *ngFor="let rule of ruleBasedLegalCompliance">
-                  <strong>Following the Rule:</strong> {{ rule.rule }}
-                  <ul>
-                    <li><strong>Based on the rule:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}</li>
-                    <li> {{ rule.message }}</li>
+              <tr *ngIf="ruleBasedLegalCompliance && ruleBasedLegalCompliance.length > 0">
+                <td class="column-header"><strong>Rule Based Compliance</strong></td>
+                <td class="column-data">
+                  <ul class="rule-list">
+                    <li *ngFor="let rule of ruleBasedLegalCompliance">
+                      <div class="rule-item">
+                        <strong>Following the rule:</strong> {{ rule.rule }}
+                        <ul>
+                          <li><strong>Based on the rule:</strong> {{ rule.isCompliant ? 'Compliant' : 'Not Compliant' }}
+                          </li>
+                          <li>{{ rule.message }}</li>
+                        </ul>
+                      </div>
+                    </li>
                   </ul>
-                </li>
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <div class="action-buttons">
-          <button (click)="downloadContract()" [disabled]="loading">
-            <i class="fas fa-download"></i> Download Info
-          </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <div class="comments-collaborators-container">
+        <div class="comments-card">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>
+                <mat-icon>comment</mat-icon>
+                <strong>Comments</strong>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <app-comment-section></app-comment-section>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="collaborators-card">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>
+                <mat-icon>people</mat-icon>
+                <strong>Collaborators</strong>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <app-collaborator-section></app-collaborator-section>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
     </div>

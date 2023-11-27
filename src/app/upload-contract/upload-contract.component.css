@@ -2,7 +2,7 @@
   position: relative;
   width: calc(100% - 280px);
   left: 280px;
-  transition: .3s ease
+  transition: .3s ease;
 }
 
 #content main {
@@ -80,6 +80,16 @@
   cursor: pointer;
 }
 
+.analysis-options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-options {
+  display: flex;
+  flex-direction: column;
+}
+
 .upload-container button,
 .analysis-options-container button {
   background: var(--blue);
@@ -98,20 +108,6 @@
   cursor: not-allowed;
 }
 
-.analysis-options-container .initiate-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  justify-content: flex-end;
-}
-
-.analysis-options-container .initiate-button[disabled] {
-  cursor: not-allowed;
-}
-
 .analysis-options-container .loading-indicator,
 .analysis-options-container .loading-text {
   margin-left: 8px;
@@ -121,11 +117,6 @@
 .contract-details {
   width: 100%;
   margin-top: 16px;
-}
-
-.contract-details td, ul:first-child li:first-child {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--grey);
 }
 
 .action-buttons {
@@ -143,20 +134,119 @@
   cursor: pointer;
   transition: background 0.3s ease;
   margin-left: 8px;
-  margin-top: 36px
+  margin-top: 36px;
 }
 
 .action-buttons button[disabled] {
   background: var(--grey);
   cursor: not-allowed;
 }
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
+
+.analysis-options-container button.initiate-button {
+  background-color: var(--dark-grey);
+  color: var(--light);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.analysis-options-container button.initiate-button:disabled {
+  background-color: var(--grey);
+  cursor: not-allowed;
+}
+
+.analysis-options-container button.initiate-button:hover {
+  background-color: var(--grey);
+  color: var(--dark);
+}
+
+.upload-container {
+  margin-bottom: 24px;
+}
+
+.loading-indicator {
+  margin-top: 16px;
+}
+
+.mat-card {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.contract-details-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.column-header {
+  width: 200px;
+  white-space: nowrap;
+}
+
+.column-data {
+  width: 300px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  #content {
+    width: 100%;
+    left: 0;
+  }
+
+  .head-title .left h1 {
+    font-size: 24px;
+  }
+
+  .upload-container,
+  .pdf-details-container {
+    padding: 16px;
+  }
+
+  .upload-container button,
+  .analysis-options-container button,
+  .action-buttons button {
+    padding: 10px 20px;
+  }
+}
+
+
+.contract-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.contract-details-table th,
+.contract-details-table td {
+  border: 1px solid var(--grey);
+  padding: 10px;
+  text-align: left;
+}
+
+.column-header {
+  width: 30%;
+  white-space: nowrap;
+}
+
+.column-data {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rule-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rule-item {
+  margin-bottom: 10px;
 }
